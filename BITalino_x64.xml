@@ -1,0 +1,316 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "dotNet_wrapper"
+    </assembly>
+    <members>
+        <member name="M:Bitalino.trigger(System.Boolean[])">
+            <summary>Assigns the digital outputs states.</summary>
+            <param name="digitalOutput">Array of booleans to assign to digital outputs, starting at output 0.
+This array cannot contain more than 4 elements.
+If the array contains less than 4 elements, the remaining outputs are set to low state.</param>
+            <remarks>This method must be called only during an acquisition.</remarks>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.DEVICE_NOT_IN_ACQUISITION" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.INVALID_PARAMETER" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.CONTACTING_DEVICE" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.INSTANCE_CLOSED" />
+            </exception>
+        </member>
+        <member name="M:Bitalino.trigger">
+            <summary>Resets all digital outputs to low state.</summary>
+            <remarks>This method must be called only during an acquisition.</remarks>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.DEVICE_NOT_IN_ACQUISITION" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.CONTACTING_DEVICE" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.INSTANCE_CLOSED" />
+            </exception>
+        </member>
+        <member name="M:Bitalino.battery(System.Int32)">
+            <summary>Sets the battery voltage threshold for the low-battery LED.</summary>
+            <param name="value">Battery voltage threshold (0...63). 0 corresponds to 3.4 V and 63 corresponds to 3.8 V.</param>
+            <remarks>This method cannot be called during an acquisition.</remarks>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.DEVICE_NOT_IDLE" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.INVALID_PARAMETER" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.CONTACTING_DEVICE" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.INSTANCE_CLOSED" />
+            </exception>
+        </member>
+        <member name="M:Bitalino.read(Bitalino.Frame[])">
+            <summary>Reads acquisition frames from the device.
+This method does not return until all requested frames are received from the device.</summary>
+            <param name="frames">Array of frames to be filled. This array cannot be empty.</param>
+            <remarks>This method must be called only during an acquisition.</remarks>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.DEVICE_NOT_IN_ACQUISITION" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.CONTACTING_DEVICE" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.INSTANCE_CLOSED" />
+            </exception>
+        </member>
+        <member name="M:Bitalino.stop">
+            <summary>Stops a signal acquisition.</summary>
+            <remarks>This method must be called only during an acquisition.</remarks>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.DEVICE_NOT_IN_ACQUISITION" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.CONTACTING_DEVICE" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.INSTANCE_CLOSED" />
+            </exception>
+        </member>
+        <member name="M:Bitalino.start(System.Int32,System.Int32[])">
+            <summary>Starts a signal acquisition from the device.</summary>
+            <param name="samplingRate">Sampling rate in Hz. Accepted values are 1, 10, 100 or 1000 Hz.</param>
+            <param name="channels">Set of channels to acquire. Accepted channels are 0, 1, 2, 3, 4, and 5.
+If this set is empty, all 6 analog channels will be acquired.</param>
+            <remarks>This method cannot be called during an acquisition.</remarks>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.DEVICE_NOT_IDLE" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.INVALID_PARAMETER" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.CONTACTING_DEVICE" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.INSTANCE_CLOSED" />
+            </exception>
+        </member>
+        <member name="M:Bitalino.start(System.Int32)">
+            <summary>Starts a signal acquisition from all analog channels on the device.</summary>
+            <param name="samplingRate">Sampling rate in Hz. Accepted values are 1, 10, 100 or 1000 Hz.</param>
+            <remarks>This method cannot be called during an acquisition.</remarks>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.DEVICE_NOT_IDLE" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.INVALID_PARAMETER" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.CONTACTING_DEVICE" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.INSTANCE_CLOSED" />
+            </exception>
+        </member>
+        <member name="M:Bitalino.start">
+            <summary>Starts a signal acquisition from all analog channels on the device at 1000 Hz.</summary>
+            <remarks>This method cannot be called during an acquisition.</remarks>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.DEVICE_NOT_IDLE" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.CONTACTING_DEVICE" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.INSTANCE_CLOSED" />
+            </exception>
+        </member>
+        <member name="M:Bitalino.version">
+            <summary>Returns the device firmware version string.</summary>
+            <remarks>This method cannot be called during an acquisition.</remarks>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.DEVICE_NOT_IDLE" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.CONTACTING_DEVICE" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.INSTANCE_CLOSED" />
+            </exception>
+        </member>
+        <member name="M:Bitalino.Finalize">
+            <summary>Disconnects from a BITalino device. If an aquisition is running, it is stopped.</summary>
+        </member>
+        <member name="M:Bitalino.Dispose">
+            <summary>Disconnects from a BITalino device. If an aquisition is running, it is stopped.</summary>
+        </member>
+        <member name="M:Bitalino.#ctor(System.String)">
+            <summary>Connects to a BITalino device.</summary>
+            <param name="address">The device Bluetooth MAC address ("xx:xx:xx:xx:xx:xx") or a serial port ("COMx")</param>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.PORT_COULD_NOT_BE_OPENED" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.PORT_INITIALIZATION" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.INVALID_ADDRESS" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.BT_ADAPTER_NOT_FOUND" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.DEVICE_NOT_FOUND" />
+            </exception>
+        </member>
+        <member name="M:Bitalino.find">
+            <summary>Searches for Bluetooth devices in range.</summary>
+            <returns>a list of found devices.</returns>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.PORT_INITIALIZATION" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.BT_ADAPTER_NOT_FOUND" />
+            </exception>
+        </member>
+        <member name="F:Bitalino.Exception.Code.INVALID_PARAMETER">
+            <summary>Invalid parameter</summary>
+        </member>
+        <member name="F:Bitalino.Exception.Code.DEVICE_NOT_IN_ACQUISITION">
+            <summary>The device is not in acquisition mode</summary>
+        </member>
+        <member name="F:Bitalino.Exception.Code.DEVICE_NOT_IDLE">
+            <summary>The device is not idle</summary>
+        </member>
+        <member name="F:Bitalino.Exception.Code.PORT_INITIALIZATION">
+            <summary>The communication port could not be initialized</summary>
+        </member>
+        <member name="F:Bitalino.Exception.Code.PORT_COULD_NOT_BE_OPENED">
+            <summary>The communication port does not exist or it is already being used</summary>
+        </member>
+        <member name="F:Bitalino.Exception.Code.CONTACTING_DEVICE">
+            <summary>The computer lost communication with the device</summary>
+        </member>
+        <member name="F:Bitalino.Exception.Code.DEVICE_NOT_FOUND">
+            <summary>The device could not be found</summary>
+        </member>
+        <member name="F:Bitalino.Exception.Code.BT_ADAPTER_NOT_FOUND">
+            <summary>No Bluetooth adapter was found</summary>
+        </member>
+        <member name="F:Bitalino.Exception.Code.INVALID_ADDRESS">
+            <summary>The specified address is invalid</summary>
+        </member>
+        <member name="F:Bitalino.Exception.Code.INSTANCE_CLOSED">
+            <summary>The object instance is closed</summary>
+        </member>
+        <member name="F:Bitalino.Frame.analog">
+            <summary>Array of analog inputs values (0...1023 or 0...63)</summary>
+        </member>
+        <member name="F:Bitalino.Frame.digital">
+            <summary>Array of digital inputs states (false or true)</summary>
+        </member>
+        <member name="F:Bitalino.Frame.seq">
+            <summary>Frame sequence number (0..15)</summary>
+        </member>
+        <member name="F:Bitalino.DevInfo.name">
+            <summary>name of a Bluetooth device</summary>
+        </member>
+        <member name="F:Bitalino.DevInfo.macAddr">
+            <summary>MAC address of a Bluetooth device</summary>
+        </member>
+        <member name="T:Bitalino">
+            <summary>The BITalino device class.</summary>
+        </member>
+        <member name="M:BITalino.trigger(std.vector&lt;System.Boolean,std.allocator&lt;System.Boolean&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Assigns the digital outputs states.
+\param[in] digitalOutput Vector of booleans to assign to digital outputs, starting at output 0.
+This vector cannot contain more than 4 elements.
+If the vector contains less than 4 elements, the remaining outputs are set to low state.
+If this parameter is not given, all digital outputs are set to low state.
+\remarks This method must be called only during an acquisition.
+\exception Exception (Exception::DEVICE_NOT_IN_ACQUISITION)
+\exception Exception (Exception::INVALID_PARAMETER)
+\exception Exception (Exception::CONTACTING_DEVICE)
+
+</member>
+        <member name="M:BITalino.battery(System.Int32)">
+Sets the battery voltage threshold for the low-battery LED.
+\param[in] value Battery voltage threshold. Default value is 0.
+Value | Voltage Threshold
+----- | -----------------
+    0 |   3.4 V
+ ...  |   ...
+   63 |   3.8 V
+\remarks This method cannot be called during an acquisition.
+\exception Exception (Exception::DEVICE_NOT_IDLE)
+\exception Exception (Exception::INVALID_PARAMETER)
+\exception Exception (Exception::CONTACTING_DEVICE)
+
+</member>
+        <member name="M:BITalino.read(std.vector&lt;BITalino.Frame,std.allocator&lt;BITalino.Frame&gt;&gt;*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Reads acquisition frames from the device.
+This method does not return until all requested frames are received from the device.
+\param[out] frames Vector of frames to be filled. If the vector is empty, it is resized to 100 frames.
+\remarks This method must be called only during an acquisition.
+\exception Exception (Exception::DEVICE_NOT_IN_ACQUISITION)
+\exception Exception (Exception::CONTACTING_DEVICE)
+
+</member>
+        <member name="M:BITalino.stop">
+Stops a signal acquisition.
+\remarks This method must be called only during an acquisition.
+\exception Exception (Exception::DEVICE_NOT_IN_ACQUISITION)
+\exception Exception (Exception::CONTACTING_DEVICE)
+
+</member>
+        <member name="M:BITalino.start(System.Int32,std.vector&lt;System.Int32,std.allocator&lt;System.Int32&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+Starts a signal acquisition from the device.
+\param[in] samplingRate Sampling rate in Hz. Accepted values are 1, 10, 100 or 1000 Hz. Default value is 1000 Hz.
+\param[in] channels Set of channels to acquire. Accepted channels are 0, 1, 2, 3, 4, and 5.
+If this set is empty or if it is not given, all 6 analog channels will be acquired.
+\remarks This method cannot be called during an acquisition.
+\exception Exception (Exception::DEVICE_NOT_IDLE)
+\exception Exception (Exception::INVALID_PARAMETER)
+\exception Exception (Exception::CONTACTING_DEVICE)
+
+</member>
+        <member name="M:BITalino.version">
+Returns the device firmware version string.
+\remarks This method cannot be called during an acquisition.
+\exception Exception (Exception::DEVICE_NOT_IDLE)
+\exception Exception (Exception::CONTACTING_DEVICE)
+
+</member>
+        <member name="M:BITalino.Dispose">
+Disconnects from a %BITalino device. If an aquisition is running, it is stopped. 
+
+</member>
+        <member name="M:BITalino.#ctor(System.SByte!System.Runtime.CompilerServices.IsSignUnspecifiedByte!System.Runtime.CompilerServices.IsConst*)">
+Connects to a %BITalino device.
+\param[in] address The device Bluetooth MAC address ("xx:xx:xx:xx:xx:xx")
+or a serial port ("COMx" on Windows or "/dev/..." on Linux or Mac OS X)
+\exception Exception (Exception::PORT_COULD_NOT_BE_OPENED)
+\exception Exception (Exception::PORT_INITIALIZATION)
+\exception Exception (Exception::INVALID_ADDRESS)
+\exception Exception (Exception::BT_ADAPTER_NOT_FOUND) - Windows only
+\exception Exception (Exception::DEVICE_NOT_FOUND) - Windows only
+
+</member>
+        <member name="M:BITalino.find">
+Searches for Bluetooth devices in range.
+\return a list of found devices
+\exception Exception (Exception::PORT_INITIALIZATION)
+\exception Exception (Exception::BT_ADAPTER_NOT_FOUND) - Windows only
+
+</member>
+        <member name="T:BITalino">
+The %BITalino device class.
+
+</member>
+    </members>
+</doc>
