@@ -5,9 +5,9 @@ with a BITalino device through a simple interface. The class library is composed
 
 An XML documentation file is also provided for each of the assembly versions. This file can be used by Visual Studio's IntelliSense and Object Browser to provide the library reference documentation.
 
-The .NET API is a wrapper built on top of the [BITalino C++ API](../C++). The wrapper code was written in C++/CLI and it is also provided ([dotNet_wrapper.cpp](dotNet_wrapper.cpp)) in case you want to build the .NET assembly yourself.
+The .NET API is a wrapper built on top of the [BITalino C++ API](../../../cpp-api). The wrapper code was written in C++/CLI and it is also provided ([dotNet_wrapper.cpp](dotNet_wrapper.cpp)) in case you want to build the .NET assembly yourself.
 
-The provided assembly was built for Windows Vista or later. If you need an assembly for Windows XP, you can build it from the [C++ API](../C++) and wrapper source codes following the instructions below. Alternatively, you can ask us and we will provide you the assembly for Windows XP.
+The provided assembly was built for Windows Vista or later. If you need an assembly for Windows XP, you can build it from the [C++ API](../../../cpp-api) and wrapper source codes following the instructions below. Alternatively, you can ask us and we will provide you the assembly for Windows XP.
 
 A sample test application in C# ([test.cs](test.cs)) is also provided.
   
@@ -38,13 +38,13 @@ To compile the sample application:
 
 ## Compiling the class library
 
-You can compile the class library if you don't want to use the pre-built assemblies or if you need to build an assembly for Windows XP. You will need [bitalino.cpp](../C++/bitalino.cpp) and [bitalino.h](../C++/bitalino.h) from the [C++ API](../C++).
+You can compile the class library if you don't want to use the pre-built assemblies or if you need to build an assembly for Windows XP. You will need [bitalino.cpp](../../../cpp-api/tree/master/bitalino.cpp) and [bitalino.h](../../../cpp-api/tree/master/bitalino.h) from the [C++ API](../../../cpp-api).
 
 To compile the class library:
 - create a CLR Class Library project in Visual Studio;
 - remove from project all files added automatically to the project;
 - disable Precompiled Headers in Project Properties → Configuration Properties → C/C++ → Precompiled Headers → Precompiled Header: Not Using Precompiled Headers
-- copy [bitalino.cpp](../C++/bitalino.cpp), [bitalino.h](../C++/bitalino.h) and [dotNet_wrapper.cpp](dotNet_wrapper.cpp) to the project directory;
+- copy [bitalino.cpp](../../../cpp-api/tree/master/bitalino.cpp), [bitalino.h](../../../cpp-api/tree/master/bitalino.h) and [dotNet_wrapper.cpp](dotNet_wrapper.cpp) to the project directory;
 - add bitalino.cpp and dotNet_wrapper.cpp files to the project at the “Source Files” folder;
 - add a reference to `ws2_32.lib` in Project Properties → Configuration Properties → Linker → Input → Additional Dependencies;
 - build the solution.
