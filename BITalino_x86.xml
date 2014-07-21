@@ -81,8 +81,28 @@ This method does not return until all requested frames are received from the dev
                 <see cref="F:Bitalino.Exception.Code.INSTANCE_CLOSED" />
             </exception>
         </member>
-        <member name="M:Bitalino.start(System.Int32,System.Int32[])">
+        <member name="M:Bitalino.start(System.Int32,System.Int32[],System.Boolean)">
             <summary>Starts a signal acquisition from the device.</summary>
+            <param name="samplingRate">Sampling rate in Hz. Accepted values are 1, 10, 100 or 1000 Hz.</param>
+            <param name="channels">Set of channels to acquire. Accepted channels are 0, 1, 2, 3, 4, and 5.
+If this set is empty, all 6 analog channels will be acquired.</param>
+            <param name="simulated">If true, start in simulated mode. Otherwise start in live mode.</param>
+            <remarks>This method cannot be called during an acquisition.</remarks>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.DEVICE_NOT_IDLE" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.INVALID_PARAMETER" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.CONTACTING_DEVICE" />
+            </exception>
+            <exception cref="T:Bitalino.Exception">
+                <see cref="F:Bitalino.Exception.Code.INSTANCE_CLOSED" />
+            </exception>
+        </member>
+        <member name="M:Bitalino.start(System.Int32,System.Int32[])">
+            <summary>Starts a live signal acquisition from the device.</summary>
             <param name="samplingRate">Sampling rate in Hz. Accepted values are 1, 10, 100 or 1000 Hz.</param>
             <param name="channels">Set of channels to acquire. Accepted channels are 0, 1, 2, 3, 4, and 5.
 If this set is empty, all 6 analog channels will be acquired.</param>
@@ -101,7 +121,7 @@ If this set is empty, all 6 analog channels will be acquired.</param>
             </exception>
         </member>
         <member name="M:Bitalino.start(System.Int32)">
-            <summary>Starts a signal acquisition from all analog channels on the device.</summary>
+            <summary>Starts a live signal acquisition from all analog channels on the device.</summary>
             <param name="samplingRate">Sampling rate in Hz. Accepted values are 1, 10, 100 or 1000 Hz.</param>
             <remarks>This method cannot be called during an acquisition.</remarks>
             <exception cref="T:Bitalino.Exception">
@@ -118,7 +138,7 @@ If this set is empty, all 6 analog channels will be acquired.</param>
             </exception>
         </member>
         <member name="M:Bitalino.start">
-            <summary>Starts a signal acquisition from all analog channels on the device at 1000 Hz.</summary>
+            <summary>Starts a live signal acquisition from all analog channels on the device at 1000 Hz.</summary>
             <remarks>This method cannot be called during an acquisition.</remarks>
             <exception cref="T:Bitalino.Exception">
                 <see cref="F:Bitalino.Exception.Code.DEVICE_NOT_IDLE" />
@@ -268,11 +288,12 @@ Stops a signal acquisition.
 \exception Exception (Exception::CONTACTING_DEVICE)
 
 </member>
-        <member name="M:BITalino.start(System.Int32,std.vector&lt;System.Int32,std.allocator&lt;System.Int32&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+        <member name="M:BITalino.start(System.Int32,std.vector&lt;System.Int32,std.allocator&lt;System.Int32&gt;&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced,System.Boolean)">
 Starts a signal acquisition from the device.
 \param[in] samplingRate Sampling rate in Hz. Accepted values are 1, 10, 100 or 1000 Hz. Default value is 1000 Hz.
 \param[in] channels Set of channels to acquire. Accepted channels are 0, 1, 2, 3, 4, and 5.
 If this set is empty or if it is not given, all 6 analog channels will be acquired.
+\param[in] simulated If true, start in simulated mode. Otherwise start in live mode. Default is to start in live mode.
 \remarks This method cannot be called during an acquisition.
 \exception Exception (Exception::DEVICE_NOT_IDLE)
 \exception Exception (Exception::INVALID_PARAMETER)

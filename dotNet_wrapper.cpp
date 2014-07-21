@@ -2,8 +2,8 @@
  * \file
  * \copyright  Copyright 2014 PLUX - Wireless Biosignals, S.A.
  * \author     Filipe Silva
- * \version    1.0
- * \date       May 2014
+ * \version    1.1
+ * \date       July 2014
  * 
  * \section LICENSE
  
@@ -142,14 +142,14 @@ public:
    /// <exception cref="Exception"><see cref="Exception::Code::INSTANCE_CLOSED"/></exception>
    String^ version(void);
 
-   /// <summary>Starts a signal acquisition from all analog channels on the device at 1000 Hz.</summary> 
+   /// <summary>Starts a live signal acquisition from all analog channels on the device at 1000 Hz.</summary> 
    /// <remarks>This method cannot be called during an acquisition.</remarks>
    /// <exception cref="Exception"><see cref="Exception::Code::DEVICE_NOT_IDLE"/></exception>
    /// <exception cref="Exception"><see cref="Exception::Code::CONTACTING_DEVICE"/></exception>
    /// <exception cref="Exception"><see cref="Exception::Code::INSTANCE_CLOSED"/></exception>
    void start(void);
 
-   /// <summary>Starts a signal acquisition from all analog channels on the device.</summary> 
+   /// <summary>Starts a live signal acquisition from all analog channels on the device.</summary> 
    /// <param name="samplingRate">Sampling rate in Hz. Accepted values are 1, 10, 100 or 1000 Hz.</param>
    /// <remarks>This method cannot be called during an acquisition.</remarks>
    /// <exception cref="Exception"><see cref="Exception::Code::DEVICE_NOT_IDLE"/></exception>
@@ -158,7 +158,7 @@ public:
    /// <exception cref="Exception"><see cref="Exception::Code::INSTANCE_CLOSED"/></exception>
    void start(int samplingRate);
 
-   /// <summary>Starts a signal acquisition from the device.</summary> 
+   /// <summary>Starts a live signal acquisition from the device.</summary> 
    /// <param name="samplingRate">Sampling rate in Hz. Accepted values are 1, 10, 100 or 1000 Hz.</param>
    /// <param name="channels">Set of channels to acquire. Accepted channels are 0, 1, 2, 3, 4, and 5.
    /// If this set is empty, all 6 analog channels will be acquired.</param>
@@ -168,6 +168,18 @@ public:
    /// <exception cref="Exception"><see cref="Exception::Code::CONTACTING_DEVICE"/></exception>
    /// <exception cref="Exception"><see cref="Exception::Code::INSTANCE_CLOSED"/></exception>
    void start(int samplingRate, array<int>^ channels);
+
+   /// <summary>Starts a signal acquisition from the device.</summary> 
+   /// <param name="samplingRate">Sampling rate in Hz. Accepted values are 1, 10, 100 or 1000 Hz.</param>
+   /// <param name="channels">Set of channels to acquire. Accepted channels are 0, 1, 2, 3, 4, and 5.
+   /// If this set is empty, all 6 analog channels will be acquired.</param>
+   /// <param name="simulated">If true, start in simulated mode. Otherwise start in live mode.</param>
+   /// <remarks>This method cannot be called during an acquisition.</remarks>
+   /// <exception cref="Exception"><see cref="Exception::Code::DEVICE_NOT_IDLE"/></exception>
+   /// <exception cref="Exception"><see cref="Exception::Code::INVALID_PARAMETER"/></exception>
+   /// <exception cref="Exception"><see cref="Exception::Code::CONTACTING_DEVICE"/></exception>
+   /// <exception cref="Exception"><see cref="Exception::Code::INSTANCE_CLOSED"/></exception>
+   void start(int samplingRate, array<int>^ channels, bool simulated);
 
    /// <summary>Stops a signal acquisition.</summary>
    /// <remarks>This method must be called only during an acquisition.</remarks>
@@ -311,6 +323,23 @@ void Bitalino::start(int samplingRate, array<int>^ channels)
    try
    {
       dev->start(samplingRate, chans);
+   }
+   catch (BITalino::Exception &e)
+   {
+      throw gcnew Exception(e);
+   }
+}
+
+void Bitalino::start(int samplingRate, array<int>^ channels, bool simulated)
+{
+   validateDev();
+
+   BITalino::Vint chans(channels->Length);
+   for(int i = 0; i < channels->Length; i++)
+      chans[i] = channels[i];
+   try
+   {
+      dev->start(samplingRate, chans, simulated);
    }
    catch (BITalino::Exception &e)
    {
