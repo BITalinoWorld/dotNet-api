@@ -7,7 +7,7 @@ An XML documentation file is also provided for each of the assembly versions. Th
 
 The .NET API is a wrapper built on top of the [BITalino C++ API](../../../cpp-api). The wrapper code was written in C++/CLI and it is also provided ([dotNet_wrapper.cpp](dotNet_wrapper.cpp)) in case you want to build the .NET assembly yourself.
 
-The provided assembly was built for Windows Vista or later. If you need an assembly for Windows XP, you can build it from the [C++ API](../../../cpp-api) and wrapper source codes following the instructions below. Alternatively, you can ask us and we will provide you the assembly for Windows XP.
+The provided assembly was built for .NET Framework 4.5 on Windows Vista or later. If you need an assembly for Windows XP or for a different version of the .NET Framework, you can build it from the [C++ API](../../../cpp-api) and wrapper source codes following the instructions below.
 
 A sample test application in C# ([test.cs](test.cs)) is also provided.
   
@@ -18,7 +18,7 @@ There are three ways to connect to a BITalino device:
   
 The API exposes a single class (Bitalino). Each instance of this class represents a connection to a BITalino device. The connection is established in the constructor and released while calling the Dispose() method or in the destructor/finalizer. An application can create several instances (to distinct devices). The library is thread-safe between distinct instances.
 
-The API was tested in Windows XP (32-bit) and Windows 7 (32-bit and 64-bit).
+The API was tested in Windows 7 (32-bit and 64-bit).
     
 ## About the sample application
   
@@ -38,7 +38,7 @@ To compile the sample application:
 
 ## Compiling the class library
 
-You can compile the class library if you don't want to use the pre-built assemblies or if you need to build an assembly for Windows XP. You will need [bitalino.cpp](../../../cpp-api/tree/master/bitalino.cpp) and [bitalino.h](../../../cpp-api/tree/master/bitalino.h) from the [C++ API](../../../cpp-api).
+You can compile the class library if you don't want to use the pre-built assemblies or if you need to build an assembly for Windows XP or for a different version of the .NET Framework. You will need [bitalino.cpp](../../../cpp-api/tree/master/bitalino.cpp) and [bitalino.h](../../../cpp-api/tree/master/bitalino.h) from the [C++ API](../../../cpp-api).
 
 To compile the class library:
 - create a CLR Class Library project in Visual Studio;
